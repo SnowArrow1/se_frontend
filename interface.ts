@@ -73,6 +73,8 @@ export interface CreatePositionItem {
   location: string;
   interviewStart: string;
   interviewEnd: string;
+  skills: string[];
+  salary:any;
 }
 
 export interface PositionItem{
@@ -88,6 +90,8 @@ export interface PositionItem{
   interviewEnd: string;
   createdAt: string;
   openingPosition: number;
+  salary: any;
+  skill: string[];
 }
 
 export interface OnePositionJson {
