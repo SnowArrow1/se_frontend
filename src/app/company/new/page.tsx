@@ -149,6 +149,7 @@ export default function CreateCompany() {
             
             <TextField
               margin="normal"
+              required
               fullWidth
               id="tel"
               label="Telephone"
@@ -160,6 +161,7 @@ export default function CreateCompany() {
             
             <TextField
               margin="normal"
+              required
               fullWidth
               id="website"
               label="Website"
@@ -195,6 +197,7 @@ export default function CreateCompany() {
             
             <TextField
               margin="normal"
+              required
               fullWidth
               id="tags"
               label="Tags (comma separated)"
@@ -226,6 +229,7 @@ export default function CreateCompany() {
             
             <TextField
               margin="normal"
+              required
               fullWidth
               id="foundedYear"
               label="Founded Year"

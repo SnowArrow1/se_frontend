@@ -244,6 +244,7 @@ export default function EditPosition({ params }: { params: { pid: string } }) {
               value={position.openingPosition}
               onChange={handleNumberChange}
               variant="outlined"
+              required
               inputProps={{ min: 1 }}
               sx={{ mt: 0.5, mb: 2 }}
             />
@@ -370,11 +371,7 @@ export default function EditPosition({ params }: { params: { pid: string } }) {
               helperText="Enter skills separated by commas"
               className="mb-5 mt-2 text-black"
             />
-
-
-
-
-            
+          
             <Typography variant="subtitle1" fontWeight="bold">Salary Range</Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 0.5, mb: 2 }}>
               <TextField
@@ -384,6 +381,7 @@ export default function EditPosition({ params }: { params: { pid: string } }) {
                 value={position.salary.min}
                 onChange={handleChange}
                 variant="outlined"
+                required
                 size="small"
                 fullWidth
                 InputProps={{ inputProps: { min: 0 } }}
@@ -395,12 +393,12 @@ export default function EditPosition({ params }: { params: { pid: string } }) {
                 value={position.salary.max}
                 onChange={handleChange}
                 variant="outlined"
+                required
                 size="small"
                 fullWidth
                 InputProps={{ inputProps: { min: position.salary.min || 0 } }}
               />
             </Box>
-
 
             <Typography variant="subtitle1" fontWeight="bold">Work arrangement</Typography>
             <FormControl fullWidth sx={{ mt: 0.5, mb: 2 }}>
@@ -425,6 +423,7 @@ export default function EditPosition({ params }: { params: { pid: string } }) {
               value={position.location}
               onChange={handleChange}
               variant="outlined"
+              required
               sx={{ mt: 0.5, mb: 2 }}
             />
             

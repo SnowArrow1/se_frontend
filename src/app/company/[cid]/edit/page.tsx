@@ -165,6 +165,7 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
             
             <TextField
               margin="normal"
+              required
               fullWidth
               id="tel"
               label="Telephone"
@@ -176,6 +177,7 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
             
             <TextField
               margin="normal"
+              required
               fullWidth
               id="website"
               label="Website"
@@ -198,6 +200,7 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
             
             <TextField
               margin="normal"
+              required
               fullWidth
               id="tags"
               label="Tags (comma separated)"
@@ -229,6 +232,7 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
             <TextField
               margin="normal"
               fullWidth
+              required
               id="foundedYear"
               label="Founded Year"
               name="foundedYear"

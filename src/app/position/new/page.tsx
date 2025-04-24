@@ -240,6 +240,7 @@ export default function AddPositionPage() {
               onChange={handleNumberChange}
               min="1"
               className="w-full p-2 bg-gray-100 rounded border-0 text-black"
+              required
             />
           </div>
           
@@ -395,6 +396,7 @@ export default function AddPositionPage() {
               variant="outlined"
               className="w-28 bg-gray-200 rounded-md"
               size="small"
+              required
               InputProps={{
                 inputProps: { min: 0 },
               }}
@@ -410,6 +412,7 @@ export default function AddPositionPage() {
               variant="outlined"
               className="w-28 bg-gray-200 rounded-md"
               size="small"
+              required
               InputProps={{
                 inputProps: { min: formData.salary.min || 0 },
               }}
@@ -447,6 +450,7 @@ export default function AddPositionPage() {
               type="text"
               id="location"
               name="location"
+              required
               value={formData.location}
               onChange={handleChange}
               className="w-full p-2 bg-gray-100 rounded border-0 text-black"
@@ -460,6 +464,7 @@ export default function AddPositionPage() {
                 type="date"
                 id="interviewStart"
                 name="interviewStart"
+                required
                 value={formData.interviewStart}
                 onChange={handleChange}
                 className="p-2 bg-white border border-gray-300 rounded text-black"
@@ -469,6 +474,7 @@ export default function AddPositionPage() {
                 type="date"
                 id="interviewEnd"
                 name="interviewEnd"
+                required
                 value={formData.interviewEnd}
                 onChange={handleChange}
                 className="p-2 bg-white border border-gray-300 rounded text-black"
