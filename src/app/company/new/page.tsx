@@ -44,11 +44,12 @@ export default function CreateCompany() {
     companySize: string;
     overview: string;
     foundedYear: string;
+
   }>({
     name: "",
     address: "",
     website: "",
-    description: "",
+    description: "des",
     tel: "",
     tags: [],
     logo: "",
