@@ -13,7 +13,7 @@ export default async function CompanyPage() {
   const session = await getServerSession(authOptions);
   
   const tagsData = tagsList.data
- // console.log(tagsData)
+ console.log(companies.count)
   return (
     <main className="min-h-screen">
       <section className="py-12 bg-gray-50">
