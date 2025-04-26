@@ -3,7 +3,7 @@ import { getSession } from "next-auth/react";
 export default async function deleteCompany(cid:string) {
     const session = await getSession();
     const response = await fetch(
-        `${process.env.BACKEND_URL}/api/v1/companies/${cid}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/companies/${cid}`,
         {
             method: "DELETE",
             headers: {

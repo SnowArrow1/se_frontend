@@ -9,7 +9,7 @@ export default async function updateCompany(company:CompanyItem){
       }
 
     const response = await fetch(`
-        ${process.env.BACKEND_URL}/api/v1/companies/${company._id}`, {
+        ${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/companies/${company._id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

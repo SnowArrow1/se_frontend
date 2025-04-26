@@ -5,7 +5,7 @@ import { getSession } from "next-auth/react";
 export default async function updateInterview(editingInterview: InterviewItem, newInterviewDate:Dayjs) {
     const session = await getSession();
     const response = await fetch(
-        `${process.env.BACKEND_URL}/api/v1/companies/${editingInterview.company}/interviews/${editingInterview._id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/companies/${editingInterview.company}/interviews/${editingInterview._id}`,
         {
         method: "PUT",
         headers: {

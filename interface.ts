@@ -17,7 +17,6 @@ export interface CompanyItem {
   tel: string;
   tags: string[];
   logo: string;
-  about: string;
   companySize: string;
   overview: string;
   foundedYear: string;
@@ -32,7 +31,6 @@ export interface CreateCompanyItem {
   tel: string;
   tags: string[];
   logo: string;
-  about: string;
   companySize: string;
   overview: string;
   foundedYear: string;
@@ -50,6 +48,7 @@ export interface InterviewItem {
   position: PositionItem;
   interviewDate: string;
   createdAt: string;
+  
 }
 
 export interface CreateInterviewItem {

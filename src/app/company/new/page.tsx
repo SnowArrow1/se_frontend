@@ -40,7 +40,6 @@ export default function CreateCompany() {
     tel: string;
     tags: string[];
     logo: string;
-    about: string;
     companySize: string;
     overview: string;
     foundedYear: string;
@@ -49,11 +48,10 @@ export default function CreateCompany() {
     name: "",
     address: "",
     website: "",
-    description: "des",
     tel: "",
     tags: [],
     logo: "",
-    about: "",
+    description: "",
     companySize: "",
     overview: "",
     foundedYear: "",
@@ -87,10 +85,32 @@ export default function CreateCompany() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!company.name || !company.address) {
-      toast.error("Company name and address are required");
+    if (!company.name) {
+      toast.error("Company Name is required");
       return;
     }
+    
+    if (!company.address) {
+      toast.error("Company Address is required");
+      return;
+    }
+
+    if (!company.website) {
+      toast.error("Company Website is required");
+      return;
+    }
+    
+    if (!company.description) {
+      toast.error("Company Description is required");
+      return;
+    }
+    
+    if (!company.companySize) {
+      toast.error("Company Size is required");
+      return;
+    }
+    
+    
     
     try {
       setCreating(true);
@@ -149,7 +169,6 @@ export default function CreateCompany() {
             
             <TextField
               margin="normal"
-              required
               fullWidth
               id="tel"
               label="Telephone"
@@ -185,19 +204,19 @@ export default function CreateCompany() {
             /> */}
             
             <TextField
+              required
               margin="normal"
               fullWidth
-              id="about"
-              label="About"
-              name="about"
-              value={company.about}
+              id="description"
+              label="description"
+              name="description"
+              value={company.description}
               onChange={handleChange}
               variant="outlined"
             />
             
             <TextField
               margin="normal"
-              required
               fullWidth
               id="tags"
               label="Tags (comma separated)"
@@ -212,6 +231,7 @@ export default function CreateCompany() {
             <FormControl fullWidth margin="normal">
               <InputLabel id="company-size-label">Company Size</InputLabel>
               <Select
+                required
                 labelId="company-size-label"
                 id="companySize"
                 name="companySize"
@@ -229,7 +249,6 @@ export default function CreateCompany() {
             
             <TextField
               margin="normal"
-              required
               fullWidth
               id="foundedYear"
               label="Founded Year"

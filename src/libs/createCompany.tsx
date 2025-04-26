@@ -7,8 +7,8 @@ export default async function createCompany(company: CreateCompanyItem) {
     if (session?.user?.role !== "admin") {
       throw new Error("Not authenticated");
     }
-
-    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/companies`, {
+console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/companies`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -44,7 +44,6 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
     tel: "",
     tags: [],
     logo: "",
-    about: "",
     companySize: "",
     overview: "",
     foundedYear: "",
@@ -190,10 +189,10 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
             <TextField
               margin="normal"
               fullWidth
-              id="about"
-              label="About"
-              name="about"
-              value={company.about}
+              id="description"
+              label="description"
+              name="description"
+              value={company.description}
               onChange={handleChange}
               variant="outlined"
             />

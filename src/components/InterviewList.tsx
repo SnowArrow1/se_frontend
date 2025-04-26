@@ -9,7 +9,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { toast, Toaster } from "react-hot-toast";
 import Link from "next/link";
-import { CompanyJson, CompanyItem, InterviewJson, InterviewItem } from "../../interface";
+import { CompanyJson, CompanyItem, InterviewJson, InterviewItem, PositionItem } from "../../interface";
 import getCompanies from "@/libs/getCompanies";
 import getInterviews from "@/libs/getInterviews";
 import getUserProfile from "@/libs/getUserProfile";
@@ -59,7 +59,7 @@ function RefreshButton() {
 }
 
 export default function InterviewList() {
-  const [interviews, setInterviews] = useState<(InterviewItem & { _id: string, user: string })[]>([]);
+  const [interviews, setInterviews] = useState<(InterviewItem & { _id: string, user: string , position: PositionItem})[]>([]);
   const [companies, setCompanies] = useState<{[key: string]: CompanyItem}>({});
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -279,6 +279,7 @@ export default function InterviewList() {
       </div>
     );
   }
+  console.log(editingInterview)
 
   return (
     <div className="max-w-4xl mx-auto relative">
@@ -469,16 +470,18 @@ export default function InterviewList() {
               <div className="mt-4">
                 <p className="mb-2 text-gray-700">Select New Date:</p>
                 <DatePicker
-                  value={newInterviewDate}
-                  onChange={(newValue) => setNewInterviewDate(newValue)}
-                  disablePast
-                  slotProps={{
-                    textField: {
-                      fullWidth: true,
-                      variant: "outlined"
-                    }
-                  }}
-                />
+                    value={newInterviewDate}
+                    onChange={(newValue) => setNewInterviewDate(newValue)}
+                    disablePast
+                    minDate={editingInterview ? dayjs(editingInterview.position.interviewStart) : undefined}
+                      maxDate={editingInterview ? dayjs(editingInterview.position.interviewEnd) : undefined}
+                    slotProps={{
+                      textField: {
+                        fullWidth: true,
+                        variant: "outlined"
+                      }
+                    }}
+                  />
               </div>
             </div>
           </DialogContent>

@@ -21,6 +21,9 @@ export default function BookInterviewPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [interviewStart, setInterviewStart] = useState<Date | null>(null);
+const [interviewEnd, setInterviewEnd] = useState<Date | null>(null);
+
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -131,10 +134,13 @@ export default function BookInterviewPage() {
             <h1 className="block mt-1 text-2xl leading-tight font-bold text-black mb-6">Schedule an Interview (Up to 3 Interviews)</h1>
             
             <form onSubmit={handleSubmit} className="space-y-6">
-              <DateInterview 
+            <DateInterview 
+              startDate={interviewStart ? dayjs(interviewStart) : null}
+              endDate={interviewEnd ? dayjs(interviewEnd) : null}
               onDateChange={(date: Date | null) => setInterviewDate(date)}
               onCompanyChange={(companyId: string) => setCompany(companyId)}
-              />
+            />
+
 
              {/* Position select dropdown */}
              <div>
@@ -145,7 +151,18 @@ export default function BookInterviewPage() {
                   labelId="position-label"
                   id="position"
                   value={position}
-                  onChange={(e) => setPosition(e.target.value)}
+                  onChange={(e) => {
+                    const selectedPositionId = e.target.value;
+                    setPosition(selectedPositionId);
+                  
+                    const selectedPosition = positions.find((pos) => pos._id === selectedPositionId);
+                    if (selectedPosition) {
+                      setInterviewStart(dayjs(selectedPosition.interviewStart).toDate());
+                      setInterviewEnd(dayjs(selectedPosition.interviewEnd).toDate());
+                      
+                    }
+                  }}
+                  
                   className="w-full"
                   variant="standard"
                   displayEmpty

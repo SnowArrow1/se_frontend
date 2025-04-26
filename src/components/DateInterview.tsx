@@ -10,10 +10,14 @@ import getCompanies from '@/libs/getCompanies';
 
 export default function DateInterview({
   onDateChange, 
-  onCompanyChange
+  onCompanyChange,
+  startDate,
+  endDate,
 }: {
   onDateChange: Function, 
-  onCompanyChange: Function
+  onCompanyChange: Function,
+  startDate?: Dayjs | null,
+  endDate?: Dayjs | null,
 }) {
   const [interviewDate, setInterviewDate] = useState<Dayjs|null>(null);
   const [selectedCompany, setSelectedCompany] = useState<CompanyItem>();
@@ -25,25 +29,11 @@ export default function DateInterview({
     const fetchCompanies = async () => {
       try {
         setLoading(true);
-        // Use your existing getCompanies function
         const data: CompanyJson = await getCompanies();
         const companyData = data.data;
         
-        // Format the data if needed
         const formattedCompanies = Array.isArray(companyData) ? companyData.map(company => ({
-            _id: company._id,
-            name: company.name,
-            address: company.address,
-            website: company.website,
-            description: company.description,
-            tags: company.tags,
-            logo: company.logo,
-            overview: company.overview,
-            foundedYear: company.foundedYear,
-            companySize: company.companySize,
-            about: company.about,
-            tel: company.tel,
-            __v: company.__v,
+            ...company,
             value: company._id,
         })) : [];
         
@@ -59,10 +49,7 @@ export default function DateInterview({
 
     fetchCompanies();
     
-    // Set up polling to check for new companies periodically
-    const intervalId = setInterval(fetchCompanies, 30000); // Check every 30 seconds
-    
-    // Clean up the interval when the component unmounts
+    const intervalId = setInterval(fetchCompanies, 30000); 
     return () => clearInterval(intervalId);
   }, []);
 
@@ -74,7 +61,7 @@ export default function DateInterview({
         fullWidth
         id="venue"
         labelId="venue-label"
-        value={selectedCompany}
+        value={selectedCompany?.value || ''}
         onChange={(e) => {
           const selected = companies.find(company => company.value === e.target.value);
           setSelectedCompany(selected); 
@@ -104,7 +91,7 @@ export default function DateInterview({
 
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker 
-          label="Event Date (May 10-13, 2022)"
+          label={(startDate && endDate) ? `Event Date (${startDate.format('MMM D')} - ${endDate.format('MMM D, YYYY')})` : "Select any Date"}
           value={interviewDate}
           onChange={(value) => {
             setInterviewDate(value); 
@@ -114,18 +101,19 @@ export default function DateInterview({
             textField: { 
               fullWidth: true, 
               margin: "normal",
-              helperText: "Please select a date between May 10-13, 2022"
+              helperText: (startDate && endDate) 
+                ? `Please select a date between ${startDate.format('MMM D')} and ${endDate.format('MMM D, YYYY')}`
+                : "You can select any date"
             } 
           }}
-          minDate={dayjs('2022-05-10')}
-          maxDate={dayjs('2022-05-13')}
+          minDate={startDate || undefined}
+          maxDate={endDate || undefined}
           shouldDisableDate={(date) => {
-            const d = dayjs(date);
-            return d < dayjs('2022-05-10') || d > dayjs('2022-05-13');
+            if (!startDate || !endDate) return false; // no restrictions if missing
+            return date.isBefore(startDate) || date.isAfter(endDate);
           }}
         />
       </LocalizationProvider>
-
     </>
   );
 }

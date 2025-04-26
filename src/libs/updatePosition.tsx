@@ -6,7 +6,7 @@ export default async function updatePosition(position:PositionItem) {
     if(session?.user?.role !== "admin") {
         throw new Error("Not authenticated");
     }
-  const response = await fetch(`${process.env.BACKEND_URL}/api/v1/positions/${position._id}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/positions/${position._id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

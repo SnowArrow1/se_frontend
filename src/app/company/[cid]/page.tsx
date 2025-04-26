@@ -135,7 +135,7 @@ export default async function CompanyDetailPage({
                 {company.description && (
                   <div className="mb-6">
                     <h2 className="text-lg font-semibold text-gray-700 mb-2">
-                      About
+                      Description
                     </h2>
                     <p className="text-gray-600">{company.description}</p>
                   </div>
@@ -425,7 +425,7 @@ export default async function CompanyDetailPage({
                 {company.description && (
                   <div className="mb-6">
                     <h2 className="text-lg font-semibold text-gray-700 mb-2">
-                      About
+                      Description
                     </h2>
                     <p className="text-gray-600">{company.description}</p>
                   </div>

@@ -8,7 +8,7 @@ export default async function deletePosition(pid: string) {
   }
 
   const response = await fetch(
-    `${process.env.BACKEND_URL}/api/v1/positions/${pid}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/positions/${pid}`,
     {
       method: "DELETE",
       headers: {

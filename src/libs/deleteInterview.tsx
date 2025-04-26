@@ -3,7 +3,7 @@ import { getSession } from "next-auth/react";
 export default async function deleteInterview(interview: InterviewItem &  { _id: string }) {
     const session = await getSession();
     const response = await fetch(
-        `${process.env.BACKEND_URL}/api/v1/interviews/${interview._id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/interviews/${interview._id}`,
         {
             method: "DELETE",
             headers: {

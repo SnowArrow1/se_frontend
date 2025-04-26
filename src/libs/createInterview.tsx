@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 export default async function createInterview(interviewData:CreateInterviewItem, companyId: string) {
     const session = await getSession();
     const response = await fetch(
-        `${process.env.BACKEND_URL}/api/v1/companies/${companyId}/interviews`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/companies/${companyId}/interviews`,
         {
             method: "POST",
             headers: {
@@ -19,7 +19,7 @@ export default async function createInterview(interviewData:CreateInterviewItem,
 
     if (!response.ok) {
         const errorData = await response.json();
-        throw new Error("Failed to create interview");
+        throw new Error(errorData.message || "Failed to create Interview");
     }
 
     return response.json();
