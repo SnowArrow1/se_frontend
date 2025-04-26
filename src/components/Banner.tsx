@@ -33,6 +33,12 @@ const Banner = () => {
     router.push('/company');
   };
 
+  const parsedSession = session && (session as any).value ? JSON.parse((session as any).value) : null;
+
+  if (parsedSession) {
+    console.log(parsedSession.user); 
+  }
+
   return (
     <div className={styles.banner}
     onClick={handleImageClick}
@@ -59,10 +65,14 @@ const Banner = () => {
         </p>
       </div>
       {
-        session ?
+        parsedSession ?
         <div className='z-30 absolute top-5 right-10 font-semibold text-white text-xl'>
-          <p>Welcome back, {session.user?.name}</p>
-        </div> : null
+          <p>Welcome back, {parsedSession.user?.name}</p>
+        </div> 
+        :
+        <div className='z-30 absolute top-5 right-10 font-semibold text-white text-xl'>
+
+        </div> 
       }
       
       {/* ปุ่ม Select Venue ที่มุมขวาล่าง */}
