@@ -34,7 +34,6 @@ export default function EditPosition({ params }: { params: { pid: string } }) {
       tel: "",
       tags: [],
       logo: "",
-      about: "",
       companySize: "",
       overview: "",
       foundedYear: "",
