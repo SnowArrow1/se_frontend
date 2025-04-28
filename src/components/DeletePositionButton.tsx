@@ -43,9 +43,9 @@ export default function DeletePositionButton({ pid }: DeletePositionButtonProps)
       setTimeout(() => {
         router.push('/position');
       }, 1500);
-    } catch (error) {
+    } catch (error:any) {
       console.error('Error deleting position:', error);
-      setSnackbarMessage('Failed to delete position');
+      setSnackbarMessage(error.message ||'Failed to delete position');
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
     } finally {

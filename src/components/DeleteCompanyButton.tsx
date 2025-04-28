@@ -50,9 +50,9 @@ export default function DeleteCompanyButton({ companyId }: DeleteCompanyButtonPr
       setTimeout(() => {
         router.push('/company');
       }, 1500);
-    } catch (error) {
+    } catch (error:any) {
       console.error('Error deleting company:', error);
-      setSnackbarMessage('Failed to delete company');
+      setSnackbarMessage(error.message || 'Failed to delete company');
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
     } finally {

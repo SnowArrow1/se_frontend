@@ -18,10 +18,13 @@ export default async function deletePosition(pid: string) {
     }
   );
 
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => null);
-    throw new Error(`Failed to delete the position: ${response.status} ${errorData ? JSON.stringify(errorData) : response.statusText}`);
-  }
+  const data = await response.json();
+
+    if (!response.ok) {
+      console.log(data.message)
+        const errorMessage = data.message || "Failed to delete position";
+        throw new Error(errorMessage);
+      }
 
   return response.json();
 }

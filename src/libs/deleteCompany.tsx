@@ -12,8 +12,14 @@ export default async function deleteCompany(cid:string) {
         }
     );
     
+
+  const data = await response.json();
+
     if (!response.ok) {
-        throw new Error("Failed to delete company");
+        
+        const errorMessage = data.message || "Failed to delete company";
+        throw new Error(errorMessage);
+
     }
     return response.json();
 }
