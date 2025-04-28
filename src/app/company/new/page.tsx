@@ -52,7 +52,7 @@ export default function CreateCompany() {
     tags: [],
     logo: "",
     description: "",
-    companySize: "",
+    companySize: "1-10 employees",
     overview: "",
     foundedYear: "",
   });
@@ -104,12 +104,7 @@ export default function CreateCompany() {
       toast.error("Company Description is required");
       return;
     }
-    
-    if (!company.companySize) {
-      toast.error("Company Size is required");
-      return;
-    }
-    
+  
     
     
     try {
@@ -231,7 +226,6 @@ export default function CreateCompany() {
             <FormControl fullWidth margin="normal">
               <InputLabel id="company-size-label">Company Size</InputLabel>
               <Select
-                required
                 labelId="company-size-label"
                 id="companySize"
                 name="companySize"
