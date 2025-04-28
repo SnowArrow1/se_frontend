@@ -16,7 +16,7 @@ type PositionCatalogProps = {
 
 
 export default function PositionCatalog({positionJson, searchKey, filterSkills,salaryRange}:PositionCatalogProps) {
-  const filteredPositions = positionJson.data.filter((position: PositionItem) => {
+  const filteredPositions:any = positionJson.data.filter((position: PositionItem) => {
     const matchesSearch =
       !searchKey?.trim() || position.title.toLowerCase().includes(searchKey.toLowerCase());
   
@@ -49,7 +49,13 @@ export default function PositionCatalog({positionJson, searchKey, filterSkills,s
         Explore {filteredPositions.length} amazing positions that you might be interested
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-        {filteredPositions.map((position: PositionItem) => (
+        { 
+           filteredPositions.length === 0 ? 
+            (
+              <p className="text-center col-span-full">No open positions at the moment.</p>
+            ) :
+        
+        (filteredPositions.map((position: PositionItem) => (
           <Link 
             href={`/position/${position._id}`} 
             className="w-full max-w-sm" 
@@ -67,7 +73,10 @@ export default function PositionCatalog({positionJson, searchKey, filterSkills,s
               skills={position.skill}
             />
           </Link>
-        ))}
+        ))
+      )
+        
+        }
       </div>
     </div>
   );
