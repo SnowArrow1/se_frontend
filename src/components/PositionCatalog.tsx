@@ -49,13 +49,12 @@ export default function PositionCatalog({positionJson, searchKey, filterSkills,s
         Explore {filteredPositions.length} amazing positions that you might be interested
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-        { 
-           filteredPositions.length === 0 ? 
-            (
-              <p className="text-center col-span-full">No open positions at the moment.</p>
-            ) :
-        
-        (filteredPositions.map((position: PositionItem) => (
+        { filteredPositions.length === 0 ? 
+            
+              <h2 className="text-center col-span-full">No open positions at the moment.</h2>
+            : <h2 className="text-center col-span-full"></h2>
+          }
+        {filteredPositions.map((position: PositionItem) => (
           <Link 
             href={`/position/${position._id}`} 
             className="w-full max-w-sm" 
@@ -74,7 +73,7 @@ export default function PositionCatalog({positionJson, searchKey, filterSkills,s
             />
           </Link>
         ))
-      )
+      
         
         }
       </div>
