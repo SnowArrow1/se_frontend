@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+
 import { notFound } from 'next/navigation';
 import getPositionById from '@/libs/getPositionById';
 import { Button } from '@mui/material';
@@ -23,11 +23,12 @@ type PositionDetailPageProps = {
 
 export default async function PositionDetailPage({ params }: PositionDetailPageProps) {
   const { pid } = params;
+
+  
+  try {
     const session = await getServerSession(authOptions);
     const isAdmin = session?.user?.role === 'admin';
   
-  
-  try {
     const positionResponse:OnePositionJson = await getPositionById(pid);
     const position:PositionItem = positionResponse.data;
     

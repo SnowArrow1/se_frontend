@@ -26,5 +26,5 @@ export default async function deletePosition(pid: string) {
         throw new Error(errorMessage);
       }
 
-      return response.json();
+  return data;
 }

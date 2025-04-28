@@ -22,5 +22,5 @@ export default async function deleteCompany(cid:string) {
 
     }
 
-    return response.json();
+    return data;
 }

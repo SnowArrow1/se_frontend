@@ -31,24 +31,54 @@ function convertGoogleDriveUrl(url: string) {
   return `https://drive.google.com/uc?export=view&id=${fileId}`;
 }
 
-export default async function CompanyDetailPage({
-  params,
-}: CompanyDetailPageProps) {
-  const { cid } = params;
 
-  try {
-    const companyResponse = await getCompany(cid);
-    const company = companyResponse.data;
-    const session = await getServerSession(authOptions);
-    const positionsResponse = await getCompanyPositions(cid);
-    const positions = positionsResponse.data;
-    const imageUrl = convertGoogleDriveUrl(company.logo);
-
-    if (!company) {
-      return notFound();
-    } else if (!positions) {
+  export default async function CompanyDetailPage({ params }: CompanyDetailPageProps) {
+    try{
+    const { cid } = params;
+  
+    let company;
+    let positions;
+    let session;
+    let imageUrl = "";
+    let companyResponse;
+    let positionsResponse;
+  
+    // Fetch Company
+    try {
+      companyResponse = await getCompany(cid);
+      company = companyResponse.data;
+  
+      if (!company) {
+        return notFound();
+      }
+  
+      imageUrl = convertGoogleDriveUrl(company.logo);
+    } catch (error) {
+      console.error("Error fetching company:", error);
       return notFound();
     }
+  
+    // Fetch Positions
+    try {
+      positionsResponse = await getCompanyPositions(cid);
+      positions = positionsResponse.data;
+  
+      if (!positions) {
+        return notFound();
+      }
+    } catch (error) {
+      console.error("Error fetching positions:", error);
+      return notFound();
+    }
+  
+    // Fetch Session
+    try {
+      session = await getServerSession(authOptions);
+    } catch (error) {
+      console.error("Error fetching session:", error);
+      session = null;
+    }
+  
 
     if (session?.user?.role === "admin") {
       return (
@@ -211,7 +241,7 @@ export default async function CompanyDetailPage({
           </div>
 
           <div className="max-w-5xl mx-auto overflow-hidden mb-8">
-            {positions && positionsResponse.count > 0 ? (
+          {positions && positions.length > 0 ? (
               positions.map((position: PositionItem) => (
                 <Card
                   key={position._id} // Don't forget to add a key prop for React lists
@@ -616,4 +646,4 @@ export default async function CompanyDetailPage({
     console.error("Error fetching company details:", error);
     return notFound();
   }
-}
+  }
