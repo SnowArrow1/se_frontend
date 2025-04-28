@@ -22,6 +22,5 @@ export default async function deleteCompany(cid:string) {
 
     }
 
-    console.log("deleteComp")
     return data;
 }
