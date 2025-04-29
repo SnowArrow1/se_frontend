@@ -103,7 +103,11 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
     e.preventDefault();
     
     if (!company.name || !company.address) {
-      toast.error("Company name and address are required");
+      toast.error("Company name is required");
+      return;
+    }
+    if (!company.address) {
+      toast.error("Address is required");
       return;
     }
     
@@ -164,7 +168,6 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
             
             <TextField
               margin="normal"
-              required
               fullWidth
               id="tel"
               label="Telephone"
@@ -188,6 +191,7 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
             
             <TextField
               margin="normal"
+              required
               fullWidth
               id="description"
               label="description"
@@ -199,7 +203,6 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
             
             <TextField
               margin="normal"
-              required
               fullWidth
               id="tags"
               label="Tags (comma separated)"
@@ -231,7 +234,6 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
             <TextField
               margin="normal"
               fullWidth
-              required
               id="foundedYear"
               label="Founded Year"
               name="foundedYear"
