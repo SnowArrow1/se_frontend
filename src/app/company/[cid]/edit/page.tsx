@@ -102,7 +102,7 @@ export default function EditCompany({ params }: { params: { cid: string } }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!company.name || !company.address) {
+    if (!company.name ) {
       toast.error("Company name is required");
       return;
     }
