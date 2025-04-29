@@ -41,7 +41,7 @@ export default defineConfig({
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry",
         headless: false, // เปิดโชว์เบราว์เซอร์
-        // slowMo: 300,
+
     },
 
     /* Configure projects for major browsers */
@@ -50,7 +50,7 @@ export default defineConfig({
             use: {
                 ...devices["Desktop Chrome"],
                 headless: false,
-                viewport: { width: 800, height: 600 },
+            //    viewport: { width: 800, height: 600 },
                 launchOptions: { slowMo: 2000 },
             },
             timeout: 30000000

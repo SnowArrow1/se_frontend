@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test.use({
-    viewport: {
-        height: 600,
-        width: 800
-    }
-});
+// test.use({
+//     viewport: {
+//         height: 600,
+//         width: 800
+//     }
+// });
 
 test('test', async({ page }) => {
     await page.goto('https://se-frontend-pi-nine.vercel.app/');
@@ -97,9 +97,19 @@ test('test', async({ page }) => {
     await expect(page.getByRole('heading', { name: 'Confirm Company Deletion' })).toBeVisible();
     await page.getByRole('button', { name: 'Delete' }).click();
     await page.goto('https://se-frontend-pi-nine.vercel.app/company');
+    // await page.getByRole('button', { name: 'Refresh positions' }).click();
+    // await page.locator('section').click();
+    // await expect(page.locator('section')).not.toContainText('Test Edit Company');
+    
     await page.getByRole('button', { name: 'Refresh positions' }).click();
-    await page.locator('section').click();
+
+
+    await expect(page.locator('section')).toBeVisible();
+    
+
     await expect(page.locator('section')).not.toContainText('Test Edit Company');
+    
+
 });
 
 test('User can view company profiles categorized by preferred industry', async ({ page }) => {
