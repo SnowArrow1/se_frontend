@@ -102,8 +102,20 @@ export default function EditPosition({ params }: { params: { pid: string } }) {
   // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setPosition({ ...position, [name]: value });
+  
+    if (name === 'salaryMin' || name === 'salaryMax') {
+      setPosition(prevState => ({
+        ...prevState,
+        salary: {
+          ...prevState.salary,
+          [name === 'salaryMin' ? 'min' : 'max']: parseInt(value) || 0,
+        }
+      }));
+    } else {
+      setPosition({ ...position, [name]: value });
+    }
   };
+  
 
   // Handle select changes
   const handleSelectChange = (e: any) => {
